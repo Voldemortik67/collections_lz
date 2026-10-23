@@ -16,7 +16,6 @@ while True:
     choice = input("Выберите действие (1-4): ")
     
     if choice == "1":
-        print()
         print("Добавление данных")
         name = input("Введите ФИО: ")
         address = input("Введите адрес: ")
@@ -28,7 +27,6 @@ while True:
         print("Пользователь успешно добавлен!")
         
     elif choice == "2":
-        print()
         print("Редактирование данных")
         row = int(input("Введите номер строки: "))
         col = input("Введите название колонки (ФИО/Адрес/Телефон/Дата рождения): ")
@@ -40,7 +38,6 @@ while True:
         else:
             print("Ошибка: неверная строка или колонка!")           
     elif choice == "3":
-        print()
         print("Удаление данных")
         row = int(input("Введите номер строки для удаления: "))
         if row in df.index:
