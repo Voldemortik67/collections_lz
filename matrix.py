@@ -1,9 +1,8 @@
 import random
-import numpy as np  
-# Вводим размеры
+# вводим размеры
 n = int(input("Введите N: "))
 m = int(input("Введите M: "))
-# Делаем первую матрицу
+# делаем первую матрицу
 matr1 = []
 for i in range(n):
     stroka = []
@@ -14,21 +13,49 @@ for i in range(n):
 print("Матрица 1:")
 for r in matr1:
     print(r)
-# Транспонируем с помощью numpy.transpose
-matr2 = np.transpose(matr1)
+# делаем транспонированную матрицу
+matr2 = []
+for i in range(m):
+    stroka = []
+    for j in range(n):
+        stroka.append(matr1[j][i])
+    matr2.append(stroka)
 print("Транспонированная матрица:")
 for r in matr2:
     print(r)
-# Проверка на квадратную матрицу
+# проверка на квадратную матрицу
 if n != m:
     print("Матрица не квадратная, определитель посчитать нельзя")
 else:
-    # Считаем определитель для ЛЮБОГО размера через np.linalg.det
-    o1 = round(np.linalg.det(matr1))
-    o2 = round(np.linalg.det(matr2))
-    print("Определитель 1:", o1)
-    print("Определитель 2:", o2)
-    if o1 == o2:
-        print("Они равны")
+    # если размер 2х2
+    if n == 2:
+        o1 = matr1 * matr1 - matr1 * matr1
+        o2 = matr2 * matr2 - matr2 * matr2
+        print("Определитель 1:", o1)
+        print("Определитель 2:", o2)
+        
+        if o1 == o2:
+            print("Они равны")
+        else:
+            print("Не равны")   
+        # если размер 3х3 (считаем по формуле Саррюса)
+    elif n == 3:
+        # для первой матрицы
+        plus1 = matr1[0][0] * matr1[1][1] * matr1[2][2] + matr1[0][1] * matr1[1][2] * matr1[2][0] + matr1[0][2] * matr1[1][0] * matr1[2][1]
+        minus1 = matr1[0][2] * matr1[1][1] * matr1[2][0] + matr1[0][0] * matr1[1][2] * matr1[2][1] + matr1[0][1] * matr1[1][0] * matr1[2][2]
+        o1 = plus1 - minus1
+        
+        # для второй матрицы
+        plus2 = matr2[0][0] * matr2[1][1] * matr2[2][2] + matr2[0][1] * matr2[1][2] * matr2[2][0] + matr2[0][2] * matr2[1][0] * matr2[2][1]
+        minus2 = matr2[0][2] * matr2[1][1] * matr2[2][0] + matr2[0][0] * matr2[1][2] * matr2[2][1] + matr2[0][1] * matr2[1][0] * matr2[2][2]
+        o2 = plus2 - minus2
+        
+        print("Определитель 1:", o1)
+        print("Определитель 2:", o2)
+        
+        if o1 == o2:
+            print("Они равны")
+        else:
+            print("Не равны")
     else:
-        print("Не равны")
+        print("Ошибка, матрица должна быть 2х2 или 3х3")
