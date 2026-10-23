@@ -24,7 +24,7 @@ for name in functions:
         y = np.log(x)
         y_pts = np.log(x_points)
         col = 'red'
-        mrk = 's'  # Квадрат (square)
+        mrk = 's'  # Квадрат
     else:
         y = x ** 3
         y_pts = x_points ** 3
